@@ -8,5 +8,15 @@ A ideia do projeto é acessar a página que contem os links para baixar/visualiz
 ## Esquema dos dados que serão extraídos
 ![esquema_dos_dados](https://github.com/KevinCerqueira/exa844-projeto-final/blob/main/banco_de_dados.png)
 
+ - **calender**: tabela responsável por armazenar os dados dos dias e suas descrições
+	 - id: ID único da tabela
+	 - year: ano do dia e mês em questão
+	 - month: ID da tabela **month**, que referencia o mês em questão
+	 - day: o dia
+	 - description: descrição do que vai acontecer no dia
+ - **month**: tabela responsável por armazenar o nome do mês e o seu número respectivo
+	 - id: ID único da tabela e número do mês
+	 - month: nome do mês
+
 ## Parte dos dados extraídos do crawler
 ![exemplo_dados](https://github.com/KevinCerqueira/exa844-projeto-final/blob/main/exemplo_dados_extraidos.png)
