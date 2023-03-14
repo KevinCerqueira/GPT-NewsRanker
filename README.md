@@ -22,5 +22,50 @@ A ideia do projeto é acessar a página que contem os links para baixar/visualiz
 - Dados cru (RAW): ![exemplo_dados](https://github.com/KevinCerqueira/exa844-projeto-final/blob/main/exemplo_dados_extraidos.png)
 - Dados processados e formatados em JSON:
 ``
-{ "janeiro": { "01": "Feriado - Ano Novo", "02-31": "Férias docentes", "17-23": "Homologação das etapas da Matrícula Web (D.A.A. e Sistema Acadêmico)", "26/01-01/02": "Matrícula Web 2023.1" }, "fevereiro": { "01-06": "Preenchimento do Plano de Ensino das disciplinas no Portal Sagres", "01-12/02": "Preenchimento do PIT", "02-03": "Confirmação de matrícula (Sistema Acadêmico)", "02-08": "Planejamento Pedagógico" } }
+{
+  "calender": [
+    {
+      "month": "janeiro",
+      "days": [
+        {
+          "day": "01",
+          "description": "Feriado - Ano Novo"
+        },
+        {
+          "day": "02-31",
+          "description": "Férias docentes"
+        },
+        {
+          "day": "17-23",
+          "description": "Homologação das etapas da Matrícula Web (D.A.A. e Sistema Acadêmico)"
+        },
+        {
+          "day": "26/01-01/02",
+          "description": "Matrícula Web 2023.1"
+        }
+      ]
+    },
+    {
+      "month": "fevereiro",
+      "days": [
+        {
+          "day": "01-06",
+          "description": "Preenchimento do Plano de Ensino das disciplinas no Portal Sagres"
+        },
+        {
+          "day": "01-12/02",
+          "description": "Preenchimento do PIT"
+        },
+        {
+          "day": "02-03",
+          "description": "Confirmação de matrícula (Sistema Acadêmico)"
+        },
+        {
+          "day": "02-08",
+          "description": "Planejamento Pedagógico"
+        }
+      ]
+    }
+  ]
+}
 ``
