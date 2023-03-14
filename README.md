@@ -21,7 +21,7 @@ A ideia do projeto é acessar a página que contem os links para baixar/visualiz
 ## Parte dos dados extraídos do crawler
 - Dados cru (RAW): ![exemplo_dados](https://github.com/KevinCerqueira/exa844-projeto-final/blob/main/exemplo_dados_extraidos.png)
 - Dados processados e formatados em JSON:
-``
+```json
 {
   "calender": [
     {
@@ -68,4 +68,3 @@ A ideia do projeto é acessar a página que contem os links para baixar/visualiz
     }
   ]
 }
-``
