@@ -14,7 +14,7 @@ A ideia do projeto é acessar a página que contem os links para baixar/visualiz
 	 - month: ID da tabela **month**, que referencia o mês em questão
 	 - day: o dia
 	 - description: descrição do que vai acontecer no dia
- - **month**: tabela responsável por armazenar o nome do mês e o seu número respectivo
+ - **months**: tabela responsável por armazenar o nome do mês e o seu número respectivo
 	 - id: ID único da tabela e número do mês
 	 - month: nome do mês
 
