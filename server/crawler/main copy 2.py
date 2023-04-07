@@ -47,6 +47,7 @@ class Crawler:
         months_int = {1: "janeiro", 2: "fevereiro", 3: "março", 4: "abril", 5: "maio", 6: "junho", 7: "julho", 8: "agosto", 9: "setembro", 10: "outubro", 11: "novembro", 12: "dezembro"}
         
         calender = {"janeiro": [], "fevereiro": [], "março": [], "abril": [], "maio": [], "junho": [], "julho": [], "agosto": [], "setembro": [], "outubro": [], "novembro": [], "dezembro": []}
+        final_text = ''
         for semester in self.semesters:
             with open(f'{semester}', 'rb') as pdf_file:
                 
@@ -61,37 +62,49 @@ class Crawler:
                 for i in range(num_paginas):
                     page = pdf_reader.pages[i]
                     text = page.extract_text()
+                    
                     for line in text.split('\n'):
-                        if(take_next_line):
+                        try:
+                            if(line[0] == ' '):
+                                line = line[1:]
+                            if(not line[0].isdigit()):
+                                final_text += line
+                            else:
+                                final_text += '\n' + line
+                        except:
+                            pass                
+                        
+            for line in final_text.split('\n'):
+                if(take_next_line):
+                    if(line[2:3] == "/"):
+                        # calender[months_int[int(start_month)]].append(["start_day"] = start_day + "/" + start_month
+                        end_day = line[0:2]
+                        end_month = line[3:5]
+                        description = line[5:]
+                        final = start_day + "/" + start_month + "-" + end_day + "/" + end_month
+                        # calender[months_int[int(start_month)]].append({"day": final, "description": description})
+                        calender[month].append({"day": final, "description": description})
+                        # calender[months_int[int(start_month)]]["end_day"] = start_day + "/" + start_month
+                        # calender[months_int[int(start_month)]]["description"] = description
+                        print(json.dumps(calender))
+                    take_next_line = False
+                if('*' in line):
+                    month = line[line.find('*'):line.find('\n')].replace(" ", "").replace('*', '').lower()
+                elif(month in months):
+                    if(self.contains_number(line)):
+                        if(line[0] == ' '):
+                            line = line[1:]
+                        if(line[:2].isdigit()):
                             if(line[2:3] == "/"):
-                                # calender[months_int[int(start_month)]].append(["start_day"] = start_day + "/" + start_month
-                                end_day = line[0:2]
-                                end_month = line[3:5]
-                                description = line[5:]
-                                final = start_day + "/" + start_month + "-" + end_day + "/" + end_month
-                                # calender[months_int[int(start_month)]].append({"day": final, "description": description})
-                                calender[month].append({"day": final, "description": description})
-                                # calender[months_int[int(start_month)]]["end_day"] = start_day + "/" + start_month
-                                # calender[months_int[int(start_month)]]["description"] = description
-                                print(json.dumps(calender))
-                            take_next_line = False
-                        if('*' in line):
-                            month = line[line.find('*'):line.find('\n')].replace(" ", "").replace('*', '').lower()
-                        elif(month in months):
-                            if(self.contains_number(line)):
-                                if(line[0] == ' '):
-                                    line = line[1:]
-                                if(line[:2].isdigit()):
-                                    if(line[2:3] == "/"):
-                                        start_day = line[0:2]
-                                        start_month = line[3:5]
-                                        # print(calender[months_int[int(start_month)]])
-                                        if(line[5:] == " a "):
-                                            take_next_line = True
-                                        # print(line[len(line)-2:])
-                                        # if(line[8:] == '\n'):
-                                        #     print(True)
-                    # text_calender += text
+                                start_day = line[0:2]
+                                start_month = line[3:5]
+                                # print(calender[months_int[int(start_month)]])
+                                if(line[5:] == " a "):
+                                    take_next_line = True
+                                # print(line[len(line)-2:])
+                                # if(line[8:] == '\n'):
+                                #     print(True)
+            # text_calender += text
                         
         # calender_json = self.gpt.chat("o texto abaixo é um calendário, separe os meses, dias e acontecimentos de cada dia num json (me retorno somente o json): \n {}".format(text))
         # teste = self.gpt.chat("o texto abaixo é um calendário, separe os meses, dias e acontecimentos de cada dia num json: \n {}".format(text))

@@ -47,6 +47,7 @@ class Crawler:
         months_int = {1: "janeiro", 2: "fevereiro", 3: "março", 4: "abril", 5: "maio", 6: "junho", 7: "julho", 8: "agosto", 9: "setembro", 10: "outubro", 11: "novembro", 12: "dezembro"}
         
         calender = {"janeiro": [], "fevereiro": [], "março": [], "abril": [], "maio": [], "junho": [], "julho": [], "agosto": [], "setembro": [], "outubro": [], "novembro": [], "dezembro": []}
+        final_text = ''
         for semester in self.semesters:
             with open(f'{semester}', 'rb') as pdf_file:
                 
@@ -61,7 +62,34 @@ class Crawler:
                 for i in range(num_paginas):
                     page = pdf_reader.pages[i]
                     text = page.extract_text()
+                    
                     for line in text.split('\n'):
+                        try:
+                            if(line[0] == ' '):
+                                line = line[1:]
+                            if(not line[0].isdigit()):
+                                final_text += line
+                            else:
+                                final_text += '\n' + line
+                        except:
+                            pass                
+        print(final_text)
+        for semester in self.semesters:
+            with open(f'{semester}', 'rb') as pdf_file:
+                
+                pdf_reader = PdfReader(pdf_file)
+
+                num_paginas = len(pdf_reader.pages)
+                
+                month = ''
+                take_next_line = False
+                start_day = ""
+                start_month = ""
+                for i in range(num_paginas):
+                    page = pdf_reader.pages[i]
+                    text = page.extract_text()
+                    # for line in text.split('\n'):
+                    for line in final_text:
                         if(take_next_line):
                             if(line[2:3] == "/"):
                                 # calender[months_int[int(start_month)]].append(["start_day"] = start_day + "/" + start_month
