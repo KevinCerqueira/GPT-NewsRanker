@@ -10,7 +10,7 @@ class Crawler:
         self.data = None
         self.year = datetime.datetime.now().year
         self.semesters = [f'{self.year}.1.pdf', f'{self.year}.2.pdf']
-        self.gpt = GPTClass()
+        # self.gpt = GPTClass()
         self.request_data()
     
     def request_data(self) -> None:

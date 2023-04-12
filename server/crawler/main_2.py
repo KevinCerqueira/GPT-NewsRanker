@@ -58,48 +58,20 @@ class Crawler:
                 take_next_line = False
                 start_day = ""
                 start_month = ""
+                current_month = ""
                 for i in range(num_paginas):
                     page = pdf_reader.pages[i]
                     text = page.extract_text()
                     for line in text.split('\n'):
-                        print(line[2:3] == "/")
-                        if(take_next_line):
-                            if(line[2:3] == "/"):
-                                # calender[months_int[int(start_month)]].append(["start_day"] = start_day + "/" + start_month
-                                end_day = line[0:2]
-                                end_month = line[3:5]
-                                description = line[5:]
-                                final = start_day + "/" + start_month + "-" + end_day + "/" + end_month
-                                # calender[months_int[int(start_month)]].append({"day": final, "description": description})
-                                calender[month].append({"day": final, "description": description})
-                                # calender[months_int[int(start_month)]]["end_day"] = start_day + "/" + start_month
-                                # calender[months_int[int(start_month)]]["description"] = description
-                                print(json.dumps(calender))
-                            take_next_line = False
-                        if('*' in line):
+                        if '*' in line:
                             month = line[line.find('*'):line.find('\n')].replace(" ", "").replace('*', '').lower()
-                        elif(month in months):
-                            if(self.contains_number(line)):
-                                
-                                if(line[0] == ' '):
-                                    line = line[1:]
-                                if(line[:2].isdigit()):
-                                    if(line[2:3] == "/"):
-                                        start_day = line[0:2]
-                                        start_month = line[3:5]
-                                        # print(calender[months_int[int(start_month)]])
-                                        if(line[5:] == " a "):
-                                            take_next_line = True
-                                        
-                                        # print(line[len(line)-2:])
-                                        # if(line[8:] == '\n'):
-                                        #     print(True)
-                    # text_calender += text
-                print(calender)
-        # calender_json = self.gpt.chat("o texto abaixo é um calendário, separe os meses, dias e acontecimentos de cada dia num json (me retorno somente o json): \n {}".format(text))
-        # teste = self.gpt.chat("o texto abaixo é um calendário, separe os meses, dias e acontecimentos de cada dia num json: \n {}".format(text))
-        # print(text_calender)
-        # print(calender_json)
+                            if(month in months):
+                                current_month = month
+                                continue
+                        elif current_month != '':
+                            if (line[1:3].isdigit()):
+                                calender[current_month].append({'day': line[1:3], 'description': line[4:]})
+                print(calender)       
     def contains_number(self, string):
         for char in string:
             if char.isdigit():
