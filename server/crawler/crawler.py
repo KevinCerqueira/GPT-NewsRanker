@@ -98,7 +98,7 @@ class Crawler:
                 exit()
                 
     def main(self):
-        for page in range(1,4):
+        for page in range(1,3):
             self.scraping_acordacidade(page)
 
 if __name__ == "__main__":
