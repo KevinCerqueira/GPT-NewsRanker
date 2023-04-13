@@ -121,3 +121,44 @@ Link do acorda cidade, é iterável como mostro abaixo:
       }
    ]
 }
+```
+# Parte 2 - API
+
+A api foi hospedada no site [render.com](render.com), e é possível fazer requisições para ela da seguinte forma:
+
+```sh
+Método: GET
+URL: https://api-kevin-exa844.onrender.com
+```
+- Exmplo de uso:
+```sh
+# Irá retornar todas as notícias
+curl https://api-kevin-exa844.onrender.com/news
+```
+
+```sh
+# Irá retornar todas as notícias com socore 6
+curl https://api-kevin-exa844.onrender.com/news?&score=6
+```
+
+```sh
+# Irá retornar todas as notícias do dia 12/04/2023
+curl https://api-kevin-exa844.onrender.com/news?&date_start=2023-04-12&date_end=2023-04-13
+```
+
+```sh
+# Irá retornar todas as notícias do dia 12/04/2023
+curl https://api-kevin-exa844.onrender.com/news?&date_start=2023-04-12&date_end=2023-04-13
+```
+
+```sh
+# Irá retornar todas as notícias do com o titulo e/ou descrição que conténha a palavra 'feira'
+curl https://api-kevin-exa844.onrender.com/news?&description=feira
+```
+
+```sh
+# Ordena as notícias pelo score de forma crescente (caso queria decrescente passar 'desc')
+curl https://api-kevin-exa844.onrender.com/news?&order_score=asc
+```
+
+- Lembrando que todos esses parametros podem ser combinados
