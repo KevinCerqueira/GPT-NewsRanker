@@ -1,26 +1,51 @@
-# Calendário interativo do semestre da UEFS (Calints)
-A ideia do projeto é acessar a página que contem os links para baixar/visualizar os calendários dos semestres da UEFS (calendários esses em PDF), extrair o link de download/visualização e o nome de cada link, baixar os dois últimos semestre disponíveis (agora por exemplo os 2 últimos são o semestre de 2023.1 e 2023.2) processar e estruturar os dados, inserir no banco esses dados formatados e após isso criar uma API para disponibilizar via JSON esses dados, e criar um front-end para receber esses dados e montar um calendário bonito e interativo.
+# Ranqueador de noticias
+
+A ideia do projeto é acessar uma página de notícias (acorda cidade), capturar as noticias (informações como: titulo, descricao, data, etc) entregar ao chat GPT para dar uma nota, levando em consideração os critérios: relevância, Credibilidade, Impacto, Contextualização, Diversidade, Originalidade, Apelo emocional. Assim o chat GPT pontua em cada critério desse, de 0 a 10, e após isso faz uma pontuação final também de 0 a 10. Com isso disponibilizo as informações (a noticia e o score dela) e o usuario pode fazer filtragens de acordo com seu interesse.
+
+  
 
 ## LINKS
-É somente 1 link, visto que a UEFS disponibiliza todos os calendários da história em uma unica página.
-- [http://www.prograd.uefs.br/modules/conteudo/conteudo.php?conteudo=6](http://www.prograd.uefs.br/modules/conteudo/conteudo.php?conteudo=6)
+
+Link do acorda cidade, é iterável como mostro abaixo:
+
+- [https://www.acordacidade.com.br/noticias/page/0/](https://www.acordacidade.com.br/noticias/page/0/)
+- [https://www.acordacidade.com.br/noticias/page/1/](https://www.acordacidade.com.br/noticias/page/1/)
+- [https://www.acordacidade.com.br/noticias/page/2/](https://www.acordacidade.com.br/noticias/page/2/)
+- por aí em diante...
+
+  
 
 ## Esquema dos dados que serão extraídos
-![esquema_dos_dados](https://github.com/KevinCerqueira/exa844-projeto-final/blob/main/banco_de_dados.png)
 
- - **calender**: tabela responsável por armazenar os dados dos dias e suas descrições
-	 - id: ID único da tabela
-	 - year: ano do dia e mês em questão
-	 - month: ID da tabela **month**, que referencia o mês em questão
-	 - day: o dia
-	 - description: descrição do que vai acontecer no dia
- - **month**: tabela responsável por armazenar o nome do mês e o seu número respectivo
-	 - id: ID único da tabela e número do mês
-	 - month: nome do mês
+![esquema_dos_dados](https://github.com/KevinCerqueira/exa844-projeto-final/blob/main/esquema_dos_dados.png)
+![banco_de_dados](https://github.com/KevinCerqueira/exa844-projeto-final/blob/main/banco_de_dados.png)
+  
 
-## Parte dos dados extraídos do crawler
-- Dados cru (RAW): ![exemplo_dados](https://github.com/KevinCerqueira/exa844-projeto-final/blob/main/exemplo_dados_extraidos.png)
-- Dados processados e formatados em JSON:
+- **news_ranker**: tabela responsável por armazenar os dados das notícias
+
+- id: ID único da tabela
+
+- external_id: ID que o site da pra notícia
+
+- title: título da notícia
+
+- category: categoria da notícia sendo o site
+
+- date: data da notícia segundo o site
+
+- description: descrição/resumo da notícia
+
+- score: pontuação que o ChatGPT deu aquela notícia
+
+- link: link da notícia
+
+- image: link da imagem da notícia
+
+- created_at, updated_at,  deleted_at: datas de controles para o sistema
+
+  
+
+## Dados de 5 notícias de 1 iteração feita pelo crawler
 ```json
 {
    "SELECT * FROM news_ranker WHERE 1=1 ORDER BY score DESC":[
