@@ -1,6 +1,6 @@
 import pymysql
 import core
-
+from datetime import datetime
 class Database:
     def connect_database(self):
         try:
@@ -17,7 +17,7 @@ class Database:
             core.log_error(__class__.__name__ , str(e))
     
     def get_news(self, args):
-        query = "SELECT * FROM news_ranker"
+        query = "SELECT * FROM news_ranker WHERE 1=1"
         if 'description' in args:
             query += f" AND (description LIKE '%{args['description']}%' OR title LIKE '%{args['description']}%' OR category LIKE '%{args['description']}%')"
         if 'date_start' in args:
@@ -36,12 +36,11 @@ class Database:
             conn, db = self.connect_database()
             db.execute(query)
             data = []
-            
             for row in db.fetchall():
                 data.append({
                     'id': row['id'],
                     'title': row['title'],
-                    'date': row['date'],
+                    'date': datetime.strftime(row['date'], '%Y-%m-%d %H:%M:%S'),
                     'description': row['description'],
                     'score': int(row['score']),
                     'link': row['link'],
@@ -49,7 +48,7 @@ class Database:
                 })
             return (True, data)
         except Exception as e:
-            core.log_error('database.get_news', str(e))
+            core.log_error('database.get_news', str(e) + ". query: " + query)
             return (False, str(e))
         
 if __name__ == '__main__':
