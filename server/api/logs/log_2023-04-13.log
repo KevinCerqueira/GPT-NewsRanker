@@ -1,0 +1,16 @@
+[2023-04-13 00:00:41.913583] DEBUG: : SELECT * FROM news_ranker WHERE 1=1 ORDER BY score DESC 
+[2023-04-13 00:00:41.913983] ERROR: database.get_news: 'int' object is not iterable 
+[2023-04-13 00:01:02.977778] ERROR: database.get_news: 'int' object is not iterable 
+[2023-04-13 00:01:14.249940] ERROR: database.get_news: 'int' object is not iterable 
+[2023-04-13 00:02:59.677505] ERROR: database.get_news: 'int' object has no attribute 'fetchall' 
+[2023-04-13 00:03:40.842327] ERROR: database.get_news: 'int' object has no attribute 'fetchall' 
+[2023-04-13 00:07:07.186124] ERROR: database.get_news: 'int' object has no attribute 'fetchall' 
+[2023-04-13 00:07:31.252207] ERROR: database.get_news: 'int' object has no attribute 'fetchall' 
+[2023-04-13 00:07:55.296182] ERROR: database.get_news: 'int' object has no attribute 'fetchall' 
+[2023-04-13 00:09:44.788594] ERROR: database.get_news: 'int' object has no attribute 'fetchall' 
+[2023-04-13 00:19:50.599836] ERROR: database.get_news: tuple indices must be integers or slices, not str 
+[2023-04-13 00:20:52.097009] ERROR: database.get_news: tuple indices must be integers or slices, not str<traceback object at 0x1026c5b40> 
+[2023-04-13 00:21:15.644781] ERROR: database.get_news: tuple indices must be integers or slices, not str 
+[2023-04-13 00:21:49.199789] ERROR: database.get_news: tuple indices must be integers or slices, not str 
+[2023-04-13 00:23:03.510298] ERROR: database.get_news: list indices must be integers or slices, not str 
+[2023-04-13 00:23:24.598047] ERROR: database.get_news: list indices must be integers or slices, not str 
