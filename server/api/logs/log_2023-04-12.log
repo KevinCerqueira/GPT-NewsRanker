@@ -1,0 +1,5 @@
+[2023-04-12 23:55:42.459754] ERROR: database.get_news: 'int' object is not iterable 
+[2023-04-12 23:57:07.824237] ERROR: database.get_news: can only concatenate str (not "int") to str 
+[2023-04-12 23:57:55.353843] ERROR: database.get_news: can only concatenate str (not "int") to str 
+[2023-04-12 23:58:32.113613] DEBUG: : SELECT * FROM news_ranker WHERE 1=1 ORDER BY score DESC 
+[2023-04-12 23:58:32.113970] ERROR: database.get_news: 'int' object is not iterable 

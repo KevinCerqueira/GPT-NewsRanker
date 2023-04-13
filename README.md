@@ -23,48 +23,76 @@ A ideia do projeto é acessar a página que contem os links para baixar/visualiz
 - Dados processados e formatados em JSON:
 ```json
 {
-  "calender": [
-    {
-      "month": "janeiro",
-      "days": [
-        {
-          "day": "01",
-          "description": "Feriado - Ano Novo"
-        },
-        {
-          "day": "02-31",
-          "description": "Férias docentes"
-        },
-        {
-          "day": "17-23",
-          "description": "Homologação das etapas da Matrícula Web (D.A.A. e Sistema Acadêmico)"
-        },
-        {
-          "day": "26/01-01/02",
-          "description": "Matrícula Web 2023.1"
-        }
-      ]
-    },
-    {
-      "month": "fevereiro",
-      "days": [
-        {
-          "day": "01-06",
-          "description": "Preenchimento do Plano de Ensino das disciplinas no Portal Sagres"
-        },
-        {
-          "day": "01-12/02",
-          "description": "Preenchimento do PIT"
-        },
-        {
-          "day": "02-03",
-          "description": "Confirmação de matrícula (Sistema Acadêmico)"
-        },
-        {
-          "day": "02-08",
-          "description": "Planejamento Pedagógico"
-        }
-      ]
-    }
-  ]
+   "SELECT * FROM news_ranker WHERE 1=1 ORDER BY score DESC":[
+      {
+         "id":34,
+         "external_id":"post-280336",
+         "title":"Vereadores fazem visita de surpresa a unidades municipais de saúde e constata denúncias",
+         "category":"Feira de Santana",
+         "date":"2023-04-13T01:45:00.000Z",
+         "description":"A proposta partiu do vereador Luiz da Feira, membro da Comissão de Saúde da Casa, acatada pela presidente do Legislativo,...",
+         "score":"8",
+         "link":"https:\/\/www.acordacidade.com.br\/noticias\/dilton-e-feito\/vereadores-fazem-visita-de-surpresa-a-unidades-municipais-de-saude-e-constata-denuncias\/",
+         "image":"https:\/\/imagens.acordacidade.com.br\/wp-content\/uploads\/2023\/04\/12224445\/visita-a-unidades-de-saude-327x204.jpg",
+         "created_at":"2023-04-13T01:58:22.000Z",
+         "updated_at":null,
+         "deleted_at":null
+      },
+      {
+         "id":58,
+         "external_id":"post-280119",
+         "title":"Formação de professores é entrave ao uso de tecnologia em sala de aula",
+         "category":"Educação",
+         "date":"2023-04-12T11:41:00.000Z",
+         "description":"Estudo mostra ensino de ciência e tecnologia na educação básica brasileira.",
+         "score":"8",
+         "link":"https:\/\/www.acordacidade.com.br\/noticias\/educacao\/formacao-de-professores-e-entrave-ao-uso-de-tecnologia-em-sala-de-aula\/",
+         "image":"https:\/\/imagens.acordacidade.com.br\/wp-content\/uploads\/2023\/04\/12083929\/home-office-notebook-computador-trabalhao-foto-marcelo-camargo-abr-09_07_2020_teletrabalho-4-327x204.jpg",
+         "created_at":"2023-04-13T02:02:37.000Z",
+         "updated_at":null,
+         "deleted_at":null
+      },
+      {
+         "id":43,
+         "external_id":"post-280232",
+         "title":"Secretaria de Meio Ambiente realiza fiscalização contra poluição visual",
+         "category":"Feira de Santana",
+         "date":"2023-04-12T19:31:00.000Z",
+         "description":"Os principais alvos foram placas e cartazes instalados ilegalmente.",
+         "score":"8",
+         "link":"https:\/\/www.acordacidade.com.br\/noticias\/feira-de-santana\/secretaria-de-meio-ambiente-realiza-fiscalizacao-contra-poluicao-visual\/",
+         "image":"https:\/\/imagens.acordacidade.com.br\/wp-content\/uploads\/2023\/04\/12162847\/SEMMAM-_-Poluicao-visual-327x204.jpeg",
+         "created_at":"2023-04-13T02:01:31.000Z",
+         "updated_at":null,
+         "deleted_at":null
+      },
+      {
+         "id":41,
+         "external_id":"post-280216",
+         "title":"Após cessão de uso do terreno do Centro de Convenções, Conder vai limpar e analisar estrutura do equipamento",
+         "category":"Feira de Santana",
+         "date":"2023-04-12T20:09:00.000Z",
+         "description":"No espaço do Centro de Convenções existe um teatro, além de um pavilhão coberto, destinado a receber feiras e exposições....",
+         "score":"8",
+         "link":"https:\/\/www.acordacidade.com.br\/noticias\/feira-de-santana\/apos-cessao-de-uso-do-terreno-do-centro-de-convencoes-conder-vai-limpar-e-analisar-estrutura-do-equipamento\/",
+         "image":"https:\/\/imagens.acordacidade.com.br\/wp-content\/uploads\/2022\/05\/26112049\/centro-de-convencoes-fotoe-ed-santos-acorda-cidade-2.jpg",
+         "created_at":"2023-04-13T02:01:03.000Z",
+         "updated_at":null,
+         "deleted_at":null
+      },
+      {
+         "id":61,
+         "external_id":"post-280098",
+         "title":"Sem cessão da área, vereador diz que Senar pode desistir de construir escola rural em Feira",
+         "category":"Feira de Santana",
+         "date":"2023-04-12T10:41:00.000Z",
+         "description":"José Carneiro criticou a presidente da Câmara, Eremita Mota, por sugerir uma audiência pública para debater o assunto.",
+         "score":"7",
+         "link":"https:\/\/www.acordacidade.com.br\/noticias\/dilton-e-feito\/sem-cessao-da-area-vereador-diz-que-senar-pode-desistir-de-construir-escola-rural-em-feira\/",
+         "image":"https:\/\/imagens.acordacidade.com.br\/wp-content\/uploads\/2023\/04\/12073921\/Vereador-Ze-Carneiro-Foto-Paulo-Jose-Acorda-Cidade-327x204.jpg",
+         "created_at":"2023-04-13T02:02:52.000Z",
+         "updated_at":null,
+         "deleted_at":null
+      }
+   ]
 }

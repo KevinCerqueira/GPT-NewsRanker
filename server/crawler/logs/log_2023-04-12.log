@@ -1,0 +1,66 @@
+[2023-04-12 22:58:16.701743] DEBUG: scraping_acordacidade: Requisitando site https://www.acordacidade.com.br/noticias/page/0 
+[2023-04-12 22:58:24.034393] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/dilton-e-feito/vereadores-fazem-visita-de-surpresa-a-unidades-municipais-de-saude-e-constata-denuncias/: Pontuação: 8 
+[2023-04-12 23:00:44.535340] DEBUG: scraping_acordacidade: Requisitando site https://www.acordacidade.com.br/noticias/page/1 
+[2023-04-12 23:00:47.652262] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/micareta/barraqueiros-convocados-para-reuniao-sobre-comunicacao-visual-e-padronizacao-de-toldos/: Pontuação: 6 
+[2023-04-12 23:00:56.183605] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/micareta/de-garcom-a-estrela-da-musica-baiana-conheca-a-historia-inspiradora-de-thiago-aquino/: Pontuação: 7 
+[2023-04-12 23:00:57.642713] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/micareta/saiba-quem-sao-o-rei-momo-a-rainha-e-as-princesas-da-micareta-de-feira-2023/: Pontuação: 5. 
+[2023-04-12 23:00:59.152781] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/feira-de-santana/comercio-de-feira-de-santana-ira-abrir-no-sabado-de-micareta/: Pontuação: 7 
+[2023-04-12 23:01:00.851955] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/feira-de-santana/jovem-morre-apos-colidir-moto-com-picape-montana-em-avenida-joao-durval/: Pontuação: 7 
+[2023-04-12 23:01:02.327058] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/dilton-e-feito/as-picuinhas-politicas-em-projetos-na-cidade-e-a-resolucao-do-centro-de-convencoes/: Pontuação: 6 
+[2023-04-12 23:01:29.259304] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/feira-de-santana/apos-cessao-de-uso-do-terreno-do-centro-de-convencoes-conder-vai-limpar-e-analisar-estrutura-do-equipamento/: Pontuação: 8. 
+
+Relevância: 8 - A notícia trata da limpeza e análise da estrutura de um equipamento público importante para a realização de eventos na região, o que afeta a comunidade local. 
+
+Credibilidade: 9 - A notícia é baseada em um comunicado oficial da Companhia de Desenvolvimento Urbano do Estado da Bahia (Conder), o que traz um grau de confiança para a informação divulgada. 
+
+Impacto: 7 - Embora seja importante a realização da limpeza e análise da estrutura do Centro de Convenções, essa notícia tem um impacto mais restrito à comunidade local. 
+
+Contextualização: 8 - A notícia apresenta informações suficientes para situar o leitor sobre o que está acontecendo e os possíveis desdobramentos do assunto. 
+
+Diversidade: 6 - A notícia tem um enfoque específico em relação à limpeza e análise da estrutura do Centro de Convenções, sem abordar outros assuntos relacionados. 
+
+Originalidade: 7 - Embora seja um tema que já tenha sido noticiado diversas vezes, a abordagem específica sobre a análise da estrutura do equipamento traz um aspecto original para a notícia. 
+
+Apelo emocional: 6 - A notícia não tem um apelo emocional forte, uma vez que trata mais de uma questão técnica do que de uma situação que afete diretamente as pessoas emocionalmente. 
+[2023-04-12 23:01:30.897636] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/bahia/grupo-aratu-apresenta-novidades-na-programacao-nesta-quinta-feira-13/: Pontuação: 5. 
+[2023-04-12 23:01:32.564389] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/feira-de-santana/secretaria-de-meio-ambiente-realiza-fiscalizacao-contra-poluicao-visual/: Pontuação: 8 
+[2023-04-12 23:01:32.906409] DEBUG: scraping_acordacidade: Requisitando site https://www.acordacidade.com.br/noticias/page/2 
+[2023-04-12 23:01:36.632178] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/saude/centro-municipal-de-prevencao-ao-cancer-completa-19-anos-de-existencia/: Pontuação: 6 
+[2023-04-12 23:01:59.672575] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/micareta/comandante-do-cprl-diz-que-pm-fara-acoes-de-varredura-durante-a-micareta-de-feira/: Pontuação: 7. 
+
+Relevância: 7 - A notícia é relevante para quem mora em Feira de Santana ou para quem planeja ir à Micareta, pois trata da segurança pública durante o evento.
+
+Credibilidade: 8 - A notícia vem de uma autoridade policial, o comandante do CPRL, o que aumenta sua credibilidade.
+
+Impacto: 6 - Embora seja importante para quem estará presente na Micareta, a notícia não tem um impacto tão grande no cenário nacional ou internacional.
+
+Contextualização: 7 - A notícia contextualiza ações policiais que serão realizadas durante o evento, o que é importante para os leitores entenderem o que está sendo feito para garantir a segurança da população.
+
+Diversidade: 5 - A notícia não tem grande diversidade de fontes ou pontos de vista, visto que se limita a informar sobre ações policiais.
+
+Originalidade: 5 - A notícia trata de algo que é comum em eventos públicos similares, portanto, não traz muita originalidade.
+
+Apelo emocional: 7 - A notícia pode ter um apelo emocional para quem irá à Micareta ou para quem se preocupa com a segurança pública em eventos desse tipo. 
+[2023-04-12 23:02:01.198655] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/saude/feira-registra-baixa-procura-por-vacina-bivalente/: Pontuação: 6 
+[2023-04-12 23:02:13.218219] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/agenda-cultural/retrofoguetes-e-papel-carbono-neste-sabado-na-casa-noise/: Pontuação: 7. 
+
+A notícia possui relevância para os fãs de música, já que destaca as apresentações de duas bandas brasileiras. A credibilidade é razoável, pois apenas informa as apresentações sem citar fontes ou outros detalhes relevantes. O impacto é mediano, visto que se trata de um evento local em uma casa de shows. Faltou contextualização sobre as bandas e o local do evento. Não há diversidade na notícia, apenas foco nas bandas mencionadas. A originalidade também é baixa, comum em notícias que apenas divulgam eventos. Por fim, não há apelo emocional na notícia. 
+[2023-04-12 23:02:14.798376] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/micareta/moradores-da-kalilandia-pedem-reforco-na-seguranca-do-bairro-durante-a-micareta/: Pontuação: 6 
+[2023-04-12 23:02:16.315700] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/policia/mandados-de-busca-e-apreensao-sao-cumpridos-na-ba-em-operacao-que-investiga-suposta-fraude-para-receber-recursos-do-fies/: Pontuação: 7 
+[2023-04-12 23:02:17.899948] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/bahia/vendas-do-varejo-crescem-38-em-janeiro-recorde-para-o-mes/: Pontuação: 7 
+[2023-04-12 23:02:19.538449] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/policia/ameacas-as-escolas-delegado-pede-que-pais-fiscalizem-redes-sociais-dos-filhos/: Pontuação: 7 
+[2023-04-12 23:02:24.475837] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/micareta/mulheres-do-bloco-la-vem-eles-irao-desfilar-de-piratas-no-sabado-de-micareta/: Pontuação: 5 
+[2023-04-12 23:02:26.047903] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/feira-de-santana/morador-pede-manutencao-de-praca-abandonada-no-parque-lagoa-do-subae/: Pontuação: 6 
+[2023-04-12 23:02:26.388881] DEBUG: scraping_acordacidade: Requisitando site https://www.acordacidade.com.br/noticias/page/3 
+[2023-04-12 23:02:30.699779] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/dilton-e-feito/adolfo-menezes-diz-a-deputados-que-vai-instalar-cpi-do-mst-oposicao-anuncia-membros/: Pontuação: 4 
+[2023-04-12 23:02:32.235509] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/dilton-e-feito/deputado-estadual-do-pl-indica-preferencia-por-candidatura-em-salvador-ao-inves-da-vice-de-bruno-reis/: Pontuação: 5 
+[2023-04-12 23:02:33.873602] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/educacao/prefeito-diz-que-esta-reforcando-acoes-de-seguranca-nas-escolas-e-classifica-ameacas-como-terrorismo/: Pontuação: 7. 
+[2023-04-12 23:02:36.438260] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/educacao/maes-de-estudantes-do-bairro-muchila-pedem-mais-vigilancia-apos-ameacas-de-ataques-as-escolas/: Pontuação: 7. 
+[2023-04-12 23:02:48.516407] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/educacao/formacao-de-professores-e-entrave-ao-uso-de-tecnologia-em-sala-de-aula/: Pontuação: 8. 
+
+A notícia apresenta relevância e impacto, já que a formação de professores é um tema crucial para a melhoria da educação e uso de tecnologia em sala de aula. A contextualização também é satisfatória, com informações sobre pesquisas e exemplos práticos. No entanto, a diversidade e originalidade não foram abordadas de forma expressiva. Já o apelo emocional não é tão presente, mas não era um aspecto crucial para esse tema em específico. A credibilidade é satisfatória, já que a notícia traz informações baseadas em estudos e pesquisas. 
+[2023-04-12 23:02:50.448795] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/saude/fazer-o-numero-2-nao-deve-levar-mais-do-que-5-minutos-veja-como-evitar-erros/: Pontuação: 6. 
+[2023-04-12 23:02:51.998965] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/toque-esportivo/diretor-avisa-que-flu-ainda-esta-no-mercado-em-busca-de-reforcos/: Pontuação: 7 
+[2023-04-12 23:02:53.681985] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/dilton-e-feito/sem-cessao-da-area-vereador-diz-que-senar-pode-desistir-de-construir-escola-rural-em-feira/: Pontuação: 7. 
+[2023-04-12 23:02:55.480224] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/saude/aposentado-diabetico-diz-que-esta-ha-3-meses-sem-receber-insulina-pela-prefeitura/: Pontuação: 7 
+[2023-04-12 23:02:57.118939] DEBUG: scraping_acordacidade: Resposta do chatGPT a noticia https://www.acordacidade.com.br/noticias/policia/semana-santa-prf-registrou-6-acidentes-nas-rodovias-que-cortam-feira-de-santana/: Pontuação: 5 
