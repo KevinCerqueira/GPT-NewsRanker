@@ -1,0 +1,2 @@
+[2023-04-18 07:50:49.398436] ERROR: Database: (2003, "Can't connect to MySQL server on '172.106.0.111' (timed out)") 
+[2023-04-18 07:50:49.398760] ERROR: database.get_news: cannot unpack non-iterable NoneType object. query: SELECT * FROM news_ranker WHERE 1=1 ORDER BY score DESC 

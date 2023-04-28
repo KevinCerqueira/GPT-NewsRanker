@@ -43,8 +43,8 @@ class Database:
                     'date': datetime.strftime(row['date'], '%Y-%m-%d %H:%M:%S'),
                     'description': row['description'],
                     'score': int(row['score']),
-                    'link': row['link'],
-                    'image': row['image']
+                    'newsUrl': row['link'],
+                    'imageUrl': row['image']
                 })
             return (True, data)
         except Exception as e:
