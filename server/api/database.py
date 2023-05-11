@@ -1,14 +1,19 @@
 import pymysql
 import core
 from datetime import datetime
+from dotenv import load_dotenv
+import os
 class Database:
+    def __init__(self) -> None:
+        load_dotenv()
+
     def connect_database(self):
         try:
             config = {
-                'user': core.env('DB_USERNAME'),
-                'password': core.env('DB_PASSWORD'),
-                'host': core.env('DB_HOST'),
-                'database': core.env('DB_DATABASE'),
+                'user': os.getenv('DB_USERNAME'),
+                'password': os.getenv('DB_PASSWORD'),
+                'host': os.getenv('DB_HOST'),
+                'database': os.getenv('DB_DATABASE'),
                 'charset': 'utf8mb4'
             }
             conn = pymysql.connect(**config, cursorclass=pymysql.cursors.DictCursor)

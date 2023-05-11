@@ -2,24 +2,28 @@ from bs4 import BeautifulSoup
 import requests
 import datetime
 import pymysql
-import os
-import platform
 from gpt import Gpt
 import core
 import pymysql
 from datetime import datetime
+import time
+from dotenv import load_dotenv
+import os
 
 class Crawler:
     def __init__(self) -> None:
+        load_dotenv()
+        self.chat = Gpt()
+        self.conn, self.db = self.connect_database()
         self.main()
         
     def connect_database(self):
         try:
             config = {
-                'user': core.env('DB_USERNAME'),
-                'password': core.env('DB_PASSWORD'),
-                'host': core.env('DB_HOST'),
-                'database': core.env('DB_DATABASE'),
+                'user': os.getenv('DB_USERNAME'),
+                'password': os.getenv('DB_PASSWORD'),
+                'host': os.getenv('DB_HOST'),
+                'database': os.getenv('DB_DATABASE'),
                 'client_flag': pymysql.constants.CLIENT.PROTOCOL_41
             }
             conn = pymysql.connect(**config)
@@ -38,11 +42,12 @@ class Crawler:
         
         soup = self.request_data(url)
         news_all = soup.find_all("a", ({'class': 'noticia-3 card-archive'}))
-        conn, db = self.connect_database()
         
         for news in news_all:
-            
+            # print(news_all)
             img = news.find('img')
+            if(img is not None):
+                img = img.get_attribute_list('src')[0]
             content = news.find('div', {'class': 'conteudo'})            
             date_raw = content.find('p', {'class': 'data-single'}).text
             date, hour = date_raw.split('às')
@@ -54,12 +59,12 @@ class Crawler:
                 'date': str(datetime.strptime(date.strip() + hour.replace('h', ':') + ':00', '%d/%m/%Y %H:%M:%S')),
                 'description': content.find('p', {'class': 'sub-text resumo-18'}).text,
                 'link': news.attrs['href'],
-                'image': img.get_attribute_list('src')[0],
+                'image': img or "",
                 'created_at': str(datetime.now())
             }
             
             try:
-                result = bool(db.execute("SELECT 1 FROM news_ranker WHERE external_id = %s", (data['external_id'])))
+                result = bool(self.db.execute("SELECT 1 FROM news_ranker WHERE external_id = %s", (data['external_id'])))
                 if(result):
                     continue
             except Exception as e:
@@ -67,38 +72,40 @@ class Crawler:
                 continue
 
             
-            gpt = Gpt()
-            response = gpt.chat(core.env('TEXT_CHAT_DEFAULT') + data['title'])
-            if(core.env('TEXT_FINDER') not in response):
-                response = gpt.chat(core.env('TEXT_CHAT_DEFAULT') + data['title'] + core.env('TEXT_REINFORCEMENT'))
+            time.sleep(3)
+            response = self.chat.chat(os.getenv('TEXT_CHAT_DEFAULT') + "TITULO:" + data['title'] + " RESUMO:" + data['description'])
+            if(os.getenv('TEXT_FINDER') not in response):
+                time.sleep(3)
+                response = self.chat.chat(os.getenv('TEXT_CHAT_DEFAULT') + data['title'] + os.getenv('TEXT_REINFORCEMENT'))
             
-            if(core.env('TEXT_FINDER') not in response):
+            if(os.getenv('TEXT_FINDER') not in response):
                 core.log_error('scraping_acordacidade', f'Não foi possível ranquear a noticia {data["link"]}. Resposta do chatGPT: {response[:round(len(response)/4)]}...')
                 continue
             
             core.log_debug('scraping_acordacidade', f'Resposta do chatGPT a noticia {data["link"]}: {response}')
             
-            score = response[response.find(core.env('TEXT_FINDER'))+11:response.find(core.env('TEXT_FINDER'))+12]
+            score = response[response.find(os.getenv('TEXT_FINDER'))+11:response.find(os.getenv('TEXT_FINDER'))+12]
             
             if(not score.isdigit()):
-                response = gpt.chat(core.env('TEXT_CHAT_DEFAULT') + data['title'] + core.env('TEXT_REINFORCEMENT'))
-                score = response[response.find(core.env('TEXT_FINDER'))+11:response.find(core.env('TEXT_FINDER'))+12]
+                time.sleep(3)
+                response = self.chat.chat(os.getenv('TEXT_CHAT_DEFAULT') + data['title'] + os.getenv('TEXT_REINFORCEMENT'))
+                score = response[response.find(os.getenv('TEXT_FINDER'))+11:response.find(os.getenv('TEXT_FINDER'))+12]
                 if(not score.isdigit()):
                     core.log_error('scraping_acordacidade', f'Não foi possível ranquear a noticia {data["link"]}. Resposta do chatGPT: {response[:round(len(response)/4)]}...')
                     continue
             try:
-                db.execute("""
+                self.db.execute("""
                     INSERT INTO 
                         news_ranker (external_id, title, category, date, description, score, link, image, created_at) 
                     VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);
                 """, (data['external_id'], data['title'], data['category'], data['date'], data['description'], score, data['link'], data['image'], data['created_at']))
-                conn.commit()
+                self.conn.commit()
             except Exception as e:
                 core.log_error("scraping_acordacidade [db.execute]" , str(e))
                 exit()
                 
     def main(self):
-        for page in range(1,3):
+        for page in range(0,10):
             self.scraping_acordacidade(page)
 
 if __name__ == "__main__":
