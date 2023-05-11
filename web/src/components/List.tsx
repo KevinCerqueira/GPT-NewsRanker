@@ -130,7 +130,7 @@ const List: React.FC = () => {
     //   };
     // }
     axios
-      .get("https://api-kevin-exa844.onrender.com/news", {
+      .get("https://api-newsranker.onrender.com/news", {
         params,
       })
       .then((response) => {
