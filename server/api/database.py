@@ -23,13 +23,13 @@ class Database:
     
     def get_news(self, args):
         query = "SELECT * FROM news_ranker WHERE 1=1"
-        if 'description' in args:
+        if 'description' in args and args['description'] not in ('', None):
             query += f" AND (description LIKE '%{args['description']}%' OR title LIKE '%{args['description']}%' OR category LIKE '%{args['description']}%')"
-        if 'date_start' in args:
-            query += f" AND date >= '{args['date_start']}'"
-        if 'date_end' in args:
-            query += f" AND date <= '{args['date_end']}'"
-        if 'score'in args:
+        if 'date_start' in args and args['date_start'] not in ('', None):
+            query += f" AND date >= '{args['date_start'].replace('+', '')}'"
+        if 'date_end' in args and args['date_end'] not in ('', None):
+            query += f" AND date <= '{args['date_end'].replace('+', '')}'"
+        if 'score'in args and args['score'] not in ('', None):
             query += f" AND score = '{args['score']}'"
             
         if 'order_score' in args:
@@ -37,8 +37,18 @@ class Database:
         else:
             query += " ORDER BY score DESC"
         
+        if 'limit' in args and (isinstance(args['limit'], str) or isinstance(args['limit'], int)) and int(args['limit']) > 0:
+            query += f" LIMIT {args['limit']}"
+        else:
+            query += " LIMIT 25"
+            
+        if 'offset' in args and (isinstance(args['offset'], str) or isinstance(args['offset'], int)) and int(args['offset']) > 0:
+            query += f" OFFSET {args['offset']}"
+        else:
+            query += " OFFSET 0"
         try:
             conn, db = self.connect_database()
+            core.log_debug("query: ", query)
             db.execute(query)
             data = []
             for row in db.fetchall():
