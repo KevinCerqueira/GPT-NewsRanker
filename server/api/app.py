@@ -1,6 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from database import Database
+
 app = Flask(__name__)
+CORS(app)
+# CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://outrodominio.com"]}})
 
 # Rota de GET com parâmetros de filtro
 @app.route('/', methods=['GET', 'POST'])
@@ -23,7 +27,7 @@ def response(success, data):
         return jsonify({'success': False, 'error': data, 'statusCode': 500})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=False)
 
 ''''
 FLASK_APP=app.py && flask run --reload
