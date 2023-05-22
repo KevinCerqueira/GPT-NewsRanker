@@ -135,7 +135,7 @@ const List: React.FC = () => {
           limit: limit,
         };
 
-        const response = await axios.get("http://127.0.0.1:5000/news", {
+        const response = await axios.get("https://api-newsranker.onrender.com/news", {
           params,
         });
 
