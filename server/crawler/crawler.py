@@ -2,18 +2,23 @@ from bs4 import BeautifulSoup
 import requests
 import datetime
 import pymysql
-from gpt import Gpt
+from gpt import Gpt, GptLocal
 import core
-import pymysql
 from datetime import datetime
 import time
 from dotenv import load_dotenv
 import os
 
 class Crawler:
-    def __init__(self) -> None:
+    def __init__(self, gpt_local = True) -> None:
         load_dotenv()
-        self.chat = Gpt()
+        
+        if(gpt_local):
+            self.chat = GptLocal()
+        else:
+            self.chat = Gpt()
+        
+        self.gpt_local = gpt_local
         self.conn, self.db = self.connect_database()
         self.main()
         
@@ -71,42 +76,60 @@ class Crawler:
                 core.log_error("scraping_acordacidade [db.execute]" , str(e))
                 continue
 
+            if(self.gpt_local):
+                self.score_gpt_local(data)
+            else:
+                self.score_gpt(data)
             
+    def score_gpt(self, data):
+        time.sleep(3)
+        response = self.chat.chat(os.getenv('TEXT_CHAT_DEFAULT') + "TITULO:" + data['title'] + " RESUMO:" + data['description'])
+        if(os.getenv('TEXT_FINDER') not in response):
             time.sleep(3)
-            response = self.chat.chat(os.getenv('TEXT_CHAT_DEFAULT') + "TITULO:" + data['title'] + " RESUMO:" + data['description'])
-            if(os.getenv('TEXT_FINDER') not in response):
-                time.sleep(3)
-                response = self.chat.chat(os.getenv('TEXT_CHAT_DEFAULT') + data['title'] + os.getenv('TEXT_REINFORCEMENT'))
-            
-            if(os.getenv('TEXT_FINDER') not in response):
-                core.log_error('scraping_acordacidade', f'Não foi possível ranquear a noticia {data["link"]}. Resposta do chatGPT: {response[:round(len(response)/4)]}...')
-                continue
-            
-            core.log_debug('scraping_acordacidade', f'Resposta do chatGPT a noticia {data["link"]}: {response}')
-            
+            response = self.chat.chat(os.getenv('TEXT_CHAT_DEFAULT') + data['title'] + os.getenv('TEXT_REINFORCEMENT'))
+        
+        if(os.getenv('TEXT_FINDER') not in response):
+            core.log_error('scraping_acordacidade', f'Não foi possível ranquear a noticia {data["link"]}. Resposta do chatGPT: {response[:round(len(response)/4)]}...')
+            return
+        
+        core.log_debug('scraping_acordacidade', f'Resposta do chatGPT a noticia {data["link"]}: {response}')
+        
+        score = response[response.find(os.getenv('TEXT_FINDER'))+11:response.find(os.getenv('TEXT_FINDER'))+12]
+        
+        if(not score.isdigit()):
+            time.sleep(3)
+            response = self.chat.chat(os.getenv('TEXT_CHAT_DEFAULT') + data['title'] + os.getenv('TEXT_REINFORCEMENT'))
             score = response[response.find(os.getenv('TEXT_FINDER'))+11:response.find(os.getenv('TEXT_FINDER'))+12]
-            
             if(not score.isdigit()):
-                time.sleep(3)
-                response = self.chat.chat(os.getenv('TEXT_CHAT_DEFAULT') + data['title'] + os.getenv('TEXT_REINFORCEMENT'))
-                score = response[response.find(os.getenv('TEXT_FINDER'))+11:response.find(os.getenv('TEXT_FINDER'))+12]
-                if(not score.isdigit()):
-                    core.log_error('scraping_acordacidade', f'Não foi possível ranquear a noticia {data["link"]}. Resposta do chatGPT: {response[:round(len(response)/4)]}...')
-                    continue
-            try:
-                self.db.execute("""
-                    INSERT INTO 
-                        news_ranker (external_id, title, category, date, description, score, link, image, created_at) 
-                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);
-                """, (data['external_id'], data['title'], data['category'], data['date'], data['description'], score, data['link'], data['image'], data['created_at']))
-                self.conn.commit()
-            except Exception as e:
-                core.log_error("scraping_acordacidade [db.execute]" , str(e))
-                exit()
+                core.log_error('scraping_acordacidade', f'Não foi possível ranquear a noticia {data["link"]}. Resposta do chatGPT: {response[:round(len(response)/4)]}...')
+                return
+        # self.insert_data(data, score)
+        
+    def score_gpt_local(self, data):
+        score = self.chat.score_news(data['title'], data['description'])
+        # score = Sensitivity().score_news(data['title'], data['description'])
+        core.log_debug('scraping_acordacidade', f'Nota do chatGPT Local a noticia titulo "{data["title"]}": {score}')
+        self.insert_data(data, round(score))
+        
+    def insert_data(self, data, score):
+        try:
+            self.db.execute("""
+                INSERT INTO 
+                    news_ranker (external_id, title, category, date, description, score, link, image, created_at) 
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);
+            """, (data['external_id'], data['title'], data['category'], data['date'], data['description'], score, data['link'], data['image'], data['created_at']))
+            self.conn.commit()
+        except Exception as e:
+            core.log_error("scraping_acordacidade [db.execute]" , str(e))
+            exit()
                 
     def main(self):
-        for page in range(0,10):
-            self.scraping_acordacidade(page)
+        while True:
+            self.scraping_acordacidade(0)
+            time.sleep(300)
+    # def main(self):
+    #     for page in range(0,1):
+    #         self.scraping_acordacidade(page)
 
 if __name__ == "__main__":
     c = Crawler()
